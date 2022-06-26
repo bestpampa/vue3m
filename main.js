@@ -8,6 +8,7 @@ const app = Vue.createApp({
             InStock: true,
             inventario: 0,
             OnSale: true,
+            cart: 0,
             detalles: ['50% algodon', '22% seda', '18% papel', '10% fibra'],
             talles: ['Large', "Medium", "Small"],
             variantes: [

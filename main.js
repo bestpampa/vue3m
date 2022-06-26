@@ -3,7 +3,7 @@ const app = Vue.createApp({
         return {
             producto: 'Socks',
             descripcion: '80% lana y 20% polyester',
-            image: './assets/images/socks_blue.jpg',
+            image: './assets/images/socks_green.jpg',
             web: 'http://www.clarin.com',
             InStock: true,
             inventario: 0,
@@ -13,14 +13,22 @@ const app = Vue.createApp({
             detalles: ['50% algodon', '22% seda', '18% papel', '10% fibra'],
             talles: ['Large', "Medium", "Small"],
             variantes: [
-                { id: 2234, color: 'green'},
-                { id: 2235, color: 'blue'},
+                { id: 2234, color: 'green', image: './assets/images/socks_green.jpg' },
+                { id: 2235, color: 'blue', image: './assets/images/socks_blue.jpg' },
             ]
         }
     },
     methods: {
         add2Cart() {
             this.carro += 1
+        },
+        removeCart() {
+            if (this.carro >= 1) (
+                this.carro -= 1
+            )
+        },
+        updateImage(variantImage) {
+            this.image = variantImage
         }
     }
 

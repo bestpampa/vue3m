@@ -11,7 +11,6 @@
   <body>
     <div id="app">
       <div class="nav-bar"></div>
-
       <div class="product-display">
         <div class="product-container">
           <div class="product-image">
@@ -32,18 +31,14 @@
             <ul>
                 <li v-for="size in talles">{{size}}</li>
             </ul>
-
             <div v-for="variant in variantes">{{variant.color}} </div>
             <div v-for="variant in variantes" :clave="variant.id">{{variant.id}} </div>
-
           </div>
         </div>
       </div>
     </div>
-
     <!-- Import App -->
     <script src="./main.js"></script>
-
     <!-- Mount App -->
     <script>
       const mountedApp = app.mount('#app')

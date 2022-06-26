@@ -9,6 +9,7 @@ const app = Vue.createApp({
             inventario: 0,
             OnSale: true,
             cart: 0,
+            carro: 0,
             detalles: ['50% algodon', '22% seda', '18% papel', '10% fibra'],
             talles: ['Large', "Medium", "Small"],
             variantes: [
@@ -16,5 +17,11 @@ const app = Vue.createApp({
                 { id: 2235, color: 'blue'},
             ]
         }
+    },
+    methods: {
+        add2Cart() {
+            this.carro += 1
+        }
     }
+
 })

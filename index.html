@@ -11,9 +11,9 @@
   <body>
     <div id="app">
       <div class="nav-bar"></div>
+      <div class="carro">Carrito({{ carro }})</div>
 
       <div class="cart">Cart({{ cart }})</div>
-      <div class="carro">Cart({{ carro }})</div>
 
       <div class="product-display">
         <div class="product-container">
@@ -22,20 +22,44 @@
           </div>
           <div class = "product-info">
             <h1>{{ producto }}</h1>
-            <a v-bind:href="web">Hecho por Bestpampa!</a>
-            <button class="button" v-on:click="cart += 1">Add 2 Cart</button>
+            <button 
+              class="button" 
+              :class="{ disabledButton: !inStock }"
+              :disabled="!inStock"
+              v-on:click="cart += 1">
+              Add Cart
+            </button>
             <button class="button" v-on:click="cart -= 1">Remove Cart</button>
-            <p v-show="InStock">{{descripcion}}</p>
+            <p v-show="inStock">{{descripcion}}</p>
             <div 
               v-for="variant in variantes" 
               :clave="variant.id" 
               @mouseover="updateImage(variant.image)"
-              class="color-circle">
-              {{variant.id}} 
+              class="color-circle"
+              :class="[ isActive ? activeClassc: '' ]"
+              :style="{ backgroundColor: variant.color }">
+              {{variant.color}} 
             </div>          
             <p v-if="inventario > 10">In Stock</p>
             <p v-else-if="inventario <= 10 && inventario > 0">Ultimas Unidades</p>
             <p v-else>Out of Stock</p>
+            <div 
+              v-for="variant in variantes"
+              :key="variant.id"
+              v-on:mouseover="updateImage(variant.image)"
+              class="color-circle"
+              :style="styles">
+              {{variant.id}} </div>
+            <button 
+              class="button" 
+              v-on:click="add2Cart">
+              Agregar a carrito
+            </button>
+            <button 
+              class="button" 
+              @click="removeCart">
+              Sacar del carrito
+            </button>
             <p v-if="OnSale">OFERTON!!</p>
             <ul>
                 <li v-for="detail in detalles">{{detail}}</li>
@@ -43,9 +67,7 @@
             <ul>
                 <li v-for="size in talles">{{size}}</li>
             </ul>
-            <div v-for="variant in variantes">{{variant.color}} </div>
-            <button class="button" v-on:click="add2Cart">Agregar a carrito</button>
-            <button class="button" @click="removeCart">Sacar del carrito</button>
+            <a v-bind:href="web">Hecho por Bestpampa!</a>
           </div>
         </div>
       </div>
